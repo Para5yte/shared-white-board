@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane id="AnchorPane" onKeyTyped="#appendText" prefHeight="801.0" prefWidth="1257.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="whiteboard.WhiteBoardController">
+    <children>
+      <ToolBar layoutX="250.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="876.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0">
+        <items>
+        	<Button fx:id="lineBtn" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#setLine" text="Line" />
+            <Button fx:id="circleBtn" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#setCircle" text="Circle" />
+            <Button fx:id="ovalBtn" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#setOval" text="Oval" />
+            <Button fx:id="rectBtn" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#setRectangle" text="Rectangle" />
+            <Button fx:id="textBtn" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#setText" text="Text" />
+            <Button fx:id="eraserBtn" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#setEraser" text="Eraser" />
+            <Button fx:id="pencilBtn" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#setPencil" text="Pencil" />
+            <ColorPicker fx:id="colourPick" prefHeight="25.0" prefWidth="90.0">
+               <value>
+                  <Color />
+               </value></ColorPicker>
+            <RadioButton fx:id="strokeRadioBtn" mnemonicParsing="false" onAction="#setStroke" selected="true" text="Stroke" />
+            <RadioButton fx:id="fillRadioBtn" mnemonicParsing="false" onAction="#setFill" text="Fill" />
+            <Slider fx:id="sizeSlider" prefHeight="14.0" prefWidth="102.0" />
+         </items>
+      </ToolBar>
+      <Canvas fx:id="mainCanvas" height="760.0" layoutX="250.0" layoutY="43.0" width="1007.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="43.0" />          
+      <Canvas fx:id="tempCanvas" height="760.0" layoutX="250.0" layoutY="43.0" onMouseDragged="#onMouseDraggedListener" onMousePressed="#onMousePressedListener" onMouseReleased="#onMouseReleaseListener" width="1007.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="43.0" />
+      <SplitPane dividerPositions="0.3776041666666667" orientation="VERTICAL" prefHeight="770.0" prefWidth="252.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="134.0" prefWidth="158.0">
+               <children>
+                  <TitledPane animated="false" prefHeight="284.0" prefWidth="250.0" text="Connected Users" AnchorPane.bottomAnchor="3.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <ListView fx:id="connectedUsersView" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <ScrollPane AnchorPane.bottomAnchor="108.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <TextFlow fx:id="messagePane" prefWidth="250.0">
+                           <padding>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </padding></TextFlow>
+                     </content>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
+                  </ScrollPane>
+                  <ButtonBar layoutX="1.0" layoutY="438.0" prefHeight="40.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0">
+                    <buttons>
+                      <Button fx:id="sendTextBtn" contentDisplay="TEXT_ONLY" minWidth="38.0" mnemonicParsing="false" onAction="#sendChatBtn" prefHeight="25.0" text="Send" />
+                    </buttons>
+                     <padding>
+                        <Insets bottom="2.5" right="5.0" top="2.5" />
+                     </padding>
+                  </ButtonBar>
+                  <TextArea fx:id="textField" layoutY="366.0" prefHeight="74.0" prefWidth="250.0" promptText="Enter message...." AnchorPane.bottomAnchor="35.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </TextArea>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
