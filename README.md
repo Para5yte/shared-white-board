@@ -30,7 +30,7 @@ java -p "path to your own javafx lib" --add-modules "javafx.controls,javafx.fxml
 ```
 
 Then join a white board session
-
+```bash
 java -p "javafx\lib" --add-modules "javafx.controls,javafx.fxml,javafx.swing" -jar JoinWhiteBoard.jar localhost <portnumber> <username>
 ```
 or
