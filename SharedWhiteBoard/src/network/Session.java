@@ -145,7 +145,7 @@ public class Session {
 	 * @param username
 	 * @throws IOException 
 	 */
-	public void removeUser(String username) throws IOException
+	public synchronized void removeUser(String username) throws IOException
 	{
 		this.connectedClients.remove(username);
 		this.updateUserArray();
@@ -159,13 +159,14 @@ public class Session {
 	 */
 	public void kickUser(String user) throws IOException{
 		
-		Client client = this.connectedClients.remove(user);
-		this.updateUserArray();
+		Client client = this.connectedClients.get(user);
 		
 		ObjectOutputStream out = client.getOutputStream();
 		
 		out.writeObject(new ExchangePayload(Protocols.Server.Request.KICK));
 		out.reset();
+		
+		this.removeUser(user);
 	}
 	
 	

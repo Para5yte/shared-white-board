@@ -275,8 +275,7 @@ public class ServerListener implements Runnable {
             // listen for server requests for change in the graphics/canvas
             while((payload = (ExchangePayload) in.readObject())!= null)
             {
-            	System.out.println("new messaged recevied on keep live thread");
-            	
+
             	String request = payload.getProtocol();
             	
             	// update the graphical interface when requested

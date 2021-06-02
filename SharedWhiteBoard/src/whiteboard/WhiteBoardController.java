@@ -323,6 +323,8 @@ public class WhiteBoardController implements Initializable {
         
         @Override
         public void updateItem(String username, boolean empty) {
+        	super.updateItem(username, empty);
+
             if (empty || username == null) {
                 setText(null);
                 setGraphic(null);

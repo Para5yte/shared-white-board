@@ -178,6 +178,7 @@ public class WhiteBoardServer{
 		String kickUser = payload.getKickUsername();
 		
 		sessions.get(host).kickUser(kickUser);
+		users.remove(kickUser);
 	}
 	
 	/**
